@@ -1,4 +1,4 @@
-package model;
+package com.jayneel.jvd_consumer.model;
 
 
 import lombok.AllArgsConstructor;
@@ -17,6 +17,6 @@ public class JobPost {
     String postProfile;
     String postDesc;
     int reqExperience;
-    List<String> techStack;
+    List<String> postTechStack;
 
 }
