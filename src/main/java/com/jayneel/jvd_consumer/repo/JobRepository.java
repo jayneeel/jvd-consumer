@@ -31,4 +31,36 @@ public class JobRepository {
         System.out.println(jobs);
     }
 
+    public JobPost getJob(int id){
+       for(JobPost jobPost : jobs){
+           if(jobPost.getPostId() == id){
+               return jobPost;
+           }
+       }
+       return null;
+    }
+
+    public JobPost deleteJob(int id){
+        for(JobPost jobPost : jobs){
+            if(jobPost.getPostId() == id){
+                jobs.remove(jobPost);
+                return jobPost;
+            }
+        }
+        return null;
+    }
+
+    public JobPost editJob(JobPost job){
+        for(JobPost jobPost : jobs){
+            if(jobPost.getPostId() == job.getPostId()){
+                jobPost.setPostDesc(job.getPostDesc());
+                jobPost.setPostProfile(job.getPostProfile());
+                jobPost.setPostTechStack(job.getPostTechStack());
+                jobPost.setReqExperience(job.getReqExperience());
+                return jobPost;
+            }
+        }
+        return null;
+    }
+
 }
