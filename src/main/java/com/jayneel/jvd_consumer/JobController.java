@@ -7,35 +7,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class JobController {
 
     @Autowired
     JobService jobService;
 
-    @GetMapping({"/", "home"})
-    public String home(){
-        return "home";
-    }
+   @GetMapping("/job-posts")
+    public List<JobPost> getAllJobs(){
+       return jobService.getAllJobs();
+   }
 
-    @GetMapping("/addjob")
-    public String addJob(){
-        return "addjob";
-    }
-
-    @PostMapping("/handleForm")
-    public String handleForm(JobPost jobPost){
-        jobService.addJob(jobPost);
-        return "success";
-    }
-
-    @GetMapping("viewalljobs")
-    public String viewAllJobs(Model m){
-        List<JobPost> jobs = jobService.getAllJobs();
-        m.addAttribute("jobPosts",jobs);
-        return "viewalljobs";
-    }
+   @PostMapping("/job-post")
+    public void postJob(JobPost jobPost){
+       jobService.addJob(jobPost);
+   }
 }
