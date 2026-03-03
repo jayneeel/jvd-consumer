@@ -25,6 +25,11 @@ public class JobController {
         return jobService.getJob(postId);
     }
 
+    @GetMapping("/job-posts/keyword/{keyword}")
+    public List<JobPost> searchByKeyword(@PathVariable String keyword){
+        return jobService.getAllJobsByKeyword(keyword);
+    }
+
    @PostMapping("/job-post")
     public void postJob(@RequestBody JobPost jobPost){
        jobService.addJob(jobPost);
@@ -36,7 +41,12 @@ public class JobController {
    }
 
    @DeleteMapping("/job-post/{id}")
-    public JobPost deleteJob(@PathVariable int id){
-       return jobService.deleteJob(id);
+    public void deleteJob(@PathVariable int id){
+       jobService.deleteJob(id);
    }
+
+    @GetMapping("/load")
+    public void loadJobs(){
+        jobService.load();
+    }
 }
