@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class LoggingAspect {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoggingAspect.class);
 
-    @Before("execute(* com.jayneel.jvd_consumer.service.JobService.*(..))")
+    @Before("execution(* com.jayneel.jvd_consumer.service.JobService.*(..))")
     public void logMethodCall(){
         LOGGER.info("Method Called");
     }
