@@ -1,5 +1,6 @@
 package com.jayneel.jvd_consumer.aop;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
@@ -12,7 +13,7 @@ public class LoggingAspect {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoggingAspect.class);
 
     @Before("execution(* com.jayneel.jvd_consumer.service.JobService.*(..))")
-    public void logMethodCall(){
-        LOGGER.info("Method Called");
+    public void logMethodCall(JoinPoint joinPoint){
+        LOGGER.info("Method Called {}", joinPoint.getSignature().getName());
     }
 }
